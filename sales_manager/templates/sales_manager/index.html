@@ -9,10 +9,10 @@
     <hr>
     <br>
     {% for book in books %}
-        <a href="{% url 'book-detail' book_id=book.id %}">{{ book.title }}</a><br>
+        <h2><a href="{% url 'book-detail' book_id=book.id %}">{{ book.title }}</a></h2>
         {{ book.text }}<br>
         Автор: <i>{{ book.author }}</i><br>
-        {{ book.date_publish|date:"Y-M" }}<br><br>
+        {{ book.date_publish|date:"Y-M" }}<br><br><br>
     {% endfor %}
 </body>
 </html>

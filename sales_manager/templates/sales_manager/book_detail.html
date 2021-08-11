@@ -6,7 +6,9 @@
 </head>
 <body>
   <h1>Book Detail Page</h1>
-  {{ book.title }}<br>
+  <hr>
+  
+  <h2>{{ book.title }}</h2><br>
   {{ book.text }}<br>
   Автор: <i>{{ book.author }}</i><br>
   {{ book.date_publish|date:"Y-M" }}<br><br>
