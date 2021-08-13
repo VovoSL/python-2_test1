@@ -12,12 +12,17 @@ class Book(models.Model):
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
+        related_name="books",
         verbose_name="Автор"
     )
     date_publish = models.DateField(
         auto_now_add=True,
         db_index=True,
         verbose_name="Дата публикации"
+    )
+    likes = models.ManyToManyField(
+        User,
+        related_name="liked_books"
     )
 
     # Возвращает название в админке, вместо book1 , 2 и т.д.
