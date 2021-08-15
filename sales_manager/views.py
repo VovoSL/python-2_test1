@@ -1,5 +1,6 @@
-from django.contrib.auth import logout, login
+from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 from django.shortcuts import render, redirect
 from django.views import View
 
@@ -7,7 +8,8 @@ from sales_manager.models import Book
 
 
 def main_page(request):
-    query_set = Book.objects.all()
+    query_set = Book.objects.all().select_related("author"). \
+        annotate(count_likes=Count("likes"))
     context = {"books": query_set}
     return render(request, "sales_manager/index.html", context=context)
 
@@ -33,7 +35,14 @@ class LoginView(View):
         return render(request, "sales_manager/login.html")
 
     def post(self,request):
-        return redirect("main-page")
+        user = authenticate(
+            username=request.POST['login'],
+            password=request.POST['pwd']
+        )
+        if user is not None:
+            login(request, user)
+            return redirect("main-page")
+        return redirect("login")
 
 
 def logout_view(request):

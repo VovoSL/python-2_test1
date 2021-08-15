@@ -18,10 +18,10 @@
     {% for book in books %}
         <h2><a href="{% url 'book-detail' book_id=book.id %}">{{ book.title }}</a></h2>
         {{ book.text }}<br>
-        Автор: <i>{{ book.author }}</i><br>
+        Автор: <i>{{ book.author.username }}</i><br>
         {{ book.date_publish|date:"Y-M" }}<br>
         <a href="{% url 'book-like' book_id=book.id %}">
-            <i>likes {{ book.likes.count }}</i>
+            <i>likes {{ book.count_likes }}</i>
         </a><br>
         <br><br>
     {% endfor %}
