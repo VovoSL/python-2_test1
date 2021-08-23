@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Shop - Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<div class="container">
     {{ user.username }}
     {% if user.is_authenticated %}
        <a href="{% url 'logout' %}">logout</a>
@@ -25,5 +27,6 @@
         </a><br>
         <br><br>
     {% endfor %}
+</div>>
 </body>
 </html>
